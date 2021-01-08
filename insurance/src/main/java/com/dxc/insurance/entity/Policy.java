@@ -65,6 +65,12 @@ public class Policy extends RepresentationModel<Policy> {
 		this.policyAmount = policyAmount;
 		this.sumAssured = sumAssured;
 	}
+	
+	public Policy(){
+		   super();
+		}
+	
+	
 	@Override
 	public String toString() {
 		return "Policy [policyId=" + policyId + ", policyType=" + policyType + ", beneficiaryName=" + beneficiaryName

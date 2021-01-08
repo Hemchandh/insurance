@@ -39,14 +39,15 @@ public class PolicyServiceImpl implements PolicyService {
 	}
 
 	@Override
-	public Policy updatePolicy(int policyId, Policy policy) {
-		return dao.updatePolicy(policyId, policy);
+	public Policy updatePolicy( Policy policy) {
+		return dao.updatePolicy(policy);
 	}
 
 	@Override
-	public List<Policy> updatePolicyPremium(int policyId, int policyAmount) {
+	public List<Policy> updatePolicyPremium(int policyAmount) {
 		// TODO Auto-generated method stub
-		return dao.updatePolicyPremium(policyId, policyAmount);
+		return dao.updatePolicyPremium(policyAmount);
+		
 	}
 
 }

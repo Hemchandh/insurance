@@ -14,7 +14,7 @@ public interface PolicyDao {
 
 	public void deletePolicy(int policyId);
 
-	public Policy updatePolicy(int policyId, Policy policy);
+	public Policy updatePolicy(Policy policy);
 
-	public List<Policy> updatePolicyPremium(int policyId, int policyAmount);
+	public List<Policy> updatePolicyPremium(int policyAmount);
 }

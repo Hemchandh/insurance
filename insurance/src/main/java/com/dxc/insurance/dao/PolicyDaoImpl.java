@@ -4,22 +4,22 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import com.dxc.insurance.controller.PolicyController;
 import com.dxc.insurance.entity.Policy;
 
+@Repository
 public class PolicyDaoImpl implements PolicyDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	private static Logger logger = Logger.getLogger(PolicyDaoImpl.class);
+	//private static Logger logger = Logger.getLogger(PolicyDaoImpl.class);
 
 	@Override
 	public void addPolicy(Policy policy) {
@@ -31,7 +31,7 @@ public class PolicyDaoImpl implements PolicyDao {
 			trans = session.beginTransaction();
 			session.save(policy);
 			trans.commit();
-			logger.info("Policy added: " +policy);
+			//logger.info("Policy added: " +policy);
 
 		} catch (HibernateException ex) {
 			ex.printStackTrace();
@@ -51,7 +51,7 @@ public class PolicyDaoImpl implements PolicyDao {
 		try {
 			session = sessionFactory.openSession();
 			policy = session.get(Policy.class, policyId);
-			logger.info("Policy fetched: " +policy);
+			//logger.info("Policy fetched: " +policy);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 
@@ -66,10 +66,11 @@ public class PolicyDaoImpl implements PolicyDao {
 	public List<Policy> getAllPolicy() {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
-		TypedQuery<Policy> qry = session.createQuery("from policy", Policy.class);
-		logger.info("Policy fetched: " +qry.getResultList());
+		TypedQuery<Policy> qry = session.createQuery("from Policy", Policy.class);
+		//logger.info("Policy fetched: " +qry.getResultList());
 		return qry.getResultList();
 	}
+	
 
 	@Override
 	public void deletePolicy(int policyId) {
@@ -80,7 +81,7 @@ public class PolicyDaoImpl implements PolicyDao {
 			session = sessionFactory.openSession();
 			policy = session.get(Policy.class, policyId);
 			session.delete(policy);
-			logger.info("Policy deleted: " +policy);
+			//logger.info("Policy deleted: " +policy);
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -92,7 +93,7 @@ public class PolicyDaoImpl implements PolicyDao {
 	}
 
 	@Override
-	public Policy updatePolicy(int policyId, Policy policy) {
+	public Policy updatePolicy(Policy policy) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		Transaction trans = null;
@@ -101,7 +102,7 @@ public class PolicyDaoImpl implements PolicyDao {
 			trans = session.beginTransaction();
 			session.update(policy);
 			trans.commit();
-			logger.info("Policy updated: " +policy);
+			//logger.info("Policy updated: " +policy);
 
 		} catch (HibernateException ex) {
 			ex.printStackTrace();
@@ -114,11 +115,11 @@ public class PolicyDaoImpl implements PolicyDao {
 	}
 
 	@Override
-	public List<Policy> updatePolicyPremium(int policyId, int policyAmount) {
+	public List<Policy> updatePolicyPremium(int policyAmount) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
-		TypedQuery<Policy> qry = session.createQuery("update policy set policyAmount=?2 where policyId=?1", Policy.class);
-		logger.info("Policy updated: " +qry.getResultList());
+		TypedQuery<Policy> qry = session.createQuery("update Policy set policyAmount=?2 where policyId=?1", Policy.class);
+		//logger.info("Policy updated: " +qry.getResultList());
 		return qry.getResultList();
 	}
 

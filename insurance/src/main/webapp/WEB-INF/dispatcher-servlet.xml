@@ -35,9 +35,9 @@
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/dxc"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/insurance"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="1234"></property>
+		<property name="password" value="ajay3215"></property>
 	</bean>
 	
 	<bean id="lsfb" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
